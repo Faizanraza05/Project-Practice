@@ -1,0 +1,1084 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elegant Glow Salon</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- CSS VARIABLES --- */
+        :root {
+            --primary-color: #c5a085; /* Soft Bronze/Beige */
+            --secondary-color: #2c3e50; /* Dark Slate Blue/Grey */
+            --accent-color: #d4a373;
+            --bg-color: #fcfcfc;
+            --white: #ffffff;
+            --font-heading: 'Playfair Display', serif;
+            --font-body: 'Poppins', sans-serif;
+        }
+
+        /* --- GLOBAL RESET --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--bg-color);
+            color: var(--secondary-color);
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* --- HEADER --- */
+        header {
+            background-color: var(--white);
+            padding: 1rem 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-family: var(--font-heading);
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--secondary-color);
+            cursor: pointer;
+            letter-spacing: 1px;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--secondary-color);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        nav a:hover {
+            color: var(--primary-color);
+        }
+
+        /* --- MAIN LAYOUT --- */
+        main {
+            flex: 1;
+            width: 100%;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Page Transitions */
+        .page-section {
+            display: none;
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        .active-page {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- BUTTONS --- */
+        .btn {
+            background-color: var(--secondary-color);
+            color: var(--white);
+            border: none;
+            padding: 12px 30px;
+            border-radius: 30px; /* Modern pill shape */
+            cursor: pointer;
+            font-size: 1rem;
+            font-family: var(--font-body);
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: inline-block;
+        }
+
+        .btn:hover {
+            background-color: var(--primary-color);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--secondary-color);
+            color: var(--secondary-color);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--secondary-color);
+            color: var(--white);
+        }
+
+        /* --- PAGE 1: LOGIN / SIGNUP --- */
+        .auth-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 80vh; /* Center vertically */
+            background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
+        }
+
+        .auth-container {
+            width: 100%;
+            max-width: 400px;
+            background: var(--white);
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            text-align: center;
+        }
+
+        .auth-container h2 {
+            font-family: var(--font-heading);
+            margin-bottom: 2rem;
+            color: var(--secondary-color);
+            font-size: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: #666;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #e1e1e1;
+            border-radius: 8px;
+            font-family: var(--font-body);
+            transition: border 0.3s;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+
+        .toggle-link {
+            margin-top: 20px;
+            font-size: 0.9rem;
+            color: #888;
+        }
+
+        .toggle-link span {
+            color: var(--secondary-color);
+            cursor: pointer;
+            font-weight: 600;
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: border 0.3s;
+        }
+
+        .toggle-link span:hover {
+            border-color: var(--secondary-color);
+        }
+
+        /* --- PAGE 2: HOME (HERO) --- */
+        .hero {
+            height: 80vh;
+            background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1560066984-138dadb4c035?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: var(--white);
+            padding: 2rem;
+        }
+
+        .hero h1 {
+            font-family: var(--font-heading);
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .features {
+            padding: 4rem 2rem;
+            background-color: var(--white);
+            text-align: center;
+        }
+        
+        .features h2 {
+            font-family: var(--font-heading);
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .features-grid {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .feature-item {
+            flex: 1;
+            min-width: 250px;
+            max-width: 350px;
+            padding: 2rem;
+            background: #f9f9f9;
+            border-radius: 15px;
+            transition: transform 0.3s;
+        }
+
+        .feature-item:hover {
+            transform: translateY(-5px);
+        }
+
+        /* --- TESTIMONIALS SECTION --- */
+        .testimonials {
+            padding: 5rem 2rem;
+            background-color: #f7f7f7; /* Slightly distinct BG */
+            text-align: center;
+        }
+
+        .testimonials h2 {
+            font-family: var(--font-heading);
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--secondary-color);
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .testimonial-card {
+            background: var(--white);
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+            text-align: left;
+            transition: transform 0.3s ease;
+            position: relative;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+        }
+
+        .stars {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .review-text {
+            color: #666;
+            font-style: italic;
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .customer-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .customer-avatar {
+            width: 45px;
+            height: 45px;
+            background-color: var(--secondary-color);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-family: var(--font-heading);
+        }
+
+        .customer-details h4 {
+            font-size: 1rem;
+            color: var(--secondary-color);
+            font-weight: 600;
+        }
+
+        .customer-details span {
+            font-size: 0.8rem;
+            color: #999;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+
+        /* --- PAGE 3: CATEGORIES --- */
+        .categories-header {
+            text-align: center;
+            padding: 3rem 0 1rem;
+        }
+
+        .categories-header h2 {
+            font-family: var(--font-heading);
+            font-size: 3rem;
+            color: var(--secondary-color);
+        }
+
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            padding: 2rem 0;
+        }
+
+        .category-card {
+            background: var(--white);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .category-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+
+        .card-img-container {
+            height: 250px;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .card-img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .category-card:hover .card-img-container img {
+            transform: scale(1.05);
+        }
+
+        .card-info {
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .card-info h3 {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            color: var(--secondary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .card-info p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        /* --- PAGE 4: DETAILS --- */
+        .details-container {
+            background: var(--white);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            overflow: hidden;
+            display: flex;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .details-image {
+            flex: 1;
+            min-width: 350px;
+            height: 500px; /* Taller image for aesthetic */
+        }
+
+        .details-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .details-content {
+            flex: 1;
+            min-width: 350px;
+            padding: 3rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .details-content h2 {
+            font-family: var(--font-heading);
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--secondary-color);
+        }
+
+        .price-tag {
+            font-size: 2rem;
+            color: var(--primary-color);
+            font-weight: 700;
+            font-family: var(--font-heading);
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        .detail-meta {
+            margin-bottom: 2rem;
+            color: #555;
+            font-size: 1.1rem;
+        }
+
+        .detail-description {
+            margin-bottom: 2rem;
+            color: #666;
+            line-height: 1.8;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background-color: var(--secondary-color);
+            color: #fff;
+            position: relative;
+            margin-top: 0; /* Removed margin because it follows testimonials */
+        }
+
+        /* SVG Wave decoration */
+        .footer-wave {
+            position: absolute;
+            top: -50px;
+            left: 0;
+            width: 100%;
+            height: 50px;
+            fill: var(--secondary-color);
+            line-height: 0;
+        }
+
+        .footer-content {
+            padding: 3rem 2rem 1rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+        }
+
+        .footer-col h4 {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+            position: relative;
+        }
+
+        /* Small underline under headings */
+        .footer-col h4::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -8px;
+            width: 40px;
+            height: 2px;
+            background-color: var(--primary-color);
+        }
+
+        .footer-col p {
+            color: #ccc;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+            line-height: 1.8;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s, padding-left 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-color);
+            padding-left: 5px;
+        }
+
+        /* Newsletter Input */
+        .newsletter-form {
+            display: flex;
+            margin-top: 1rem;
+        }
+
+        .newsletter-form input {
+            padding: 10px;
+            border: none;
+            border-radius: 4px 0 0 4px;
+            outline: none;
+            width: 100%;
+            font-family: var(--font-body);
+        }
+
+        .newsletter-form button {
+            background-color: var(--primary-color);
+            color: var(--white);
+            border: none;
+            padding: 0 15px;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .newsletter-form button:hover {
+            background-color: #b58b62;
+        }
+
+        /* Social Icons */
+        .social-icons {
+            display: flex;
+            gap: 10px;
+            margin-top: 1.5rem;
+        }
+
+        .social-icon {
+            width: 35px;
+            height: 35px;
+            background-color: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            text-decoration: none;
+            font-size: 0.8rem;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        .social-icon:hover {
+            background-color: var(--primary-color);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding: 2rem 0;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            margin-top: 3rem;
+            color: #888;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header {
+                padding: 1rem;
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            nav ul {
+                gap: 15px;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .details-container {
+                flex-direction: column;
+            }
+            
+            .details-image {
+                height: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo" onclick="showPage('home-page')">ELEGANT GLOW</div>
+        <nav>
+            <ul id="nav-links">
+                <li><a onclick="showPage('home-page')">Home</a></li>
+                <li><a onclick="showPage('categories-page')">Services</a></li>
+                <li><a onclick="showPage('login-page')">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        
+        <section id="login-page" class="page-section active-page">
+            <div class="auth-wrapper">
+                <div id="login-panel" class="auth-container">
+                    <h2>Member Login</h2>
+                    <form onsubmit="handleLogin(event)">
+                        <div class="form-group">
+                            <label>Username</label>
+                            <input type="text" placeholder="Enter your username" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Password</label>
+                            <input type="password" placeholder="Enter your password" required>
+                        </div>
+                        <button type="submit" class="btn" style="width: 100%;">Sign In</button>
+                    </form>
+                    <div class="toggle-link">
+                        New here? <span onclick="toggleAuth('signup')">Create an Account</span>
+                    </div>
+                </div>
+
+                <div id="signup-panel" class="auth-container" style="display: none;">
+                    <h2>Join Us</h2>
+                    <form onsubmit="handleLogin(event)">
+                        <div class="form-group">
+                            <label>Full Name</label>
+                            <input type="text" placeholder="Your Name" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Email Address</label>
+                            <input type="email" placeholder="name@example.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Password</label>
+                            <input type="password" placeholder="Create a password" required>
+                        </div>
+                        <button type="submit" class="btn" style="width: 100%;">Register</button>
+                    </form>
+                    <div class="toggle-link">
+                        Already a member? <span onclick="toggleAuth('login')">Sign In</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="home-page" class="page-section">
+            <div class="hero">
+                <h1>Beauty Defined By You</h1>
+                <p>Experience the art of relaxation and transformation. Expert styling, premium care, and a sanctuary for your soul.</p>
+                <a onclick="showPage('categories-page')" class="btn" style="background-color: var(--white); color: var(--secondary-color);">Explore Services</a>
+            </div>
+            
+            <div class="features">
+                <div class="container">
+                    <h2>The Elegant Experience</h2>
+                    <div class="features-grid">
+                        <div class="feature-item">
+                            <h3 style="font-family: var(--font-heading); margin-bottom: 10px;">Expert Stylists</h3>
+                            <p style="color: #666;">Our team comprises award-winning professionals dedicated to your perfect look.</p>
+                        </div>
+                        <div class="feature-item">
+                            <h3 style="font-family: var(--font-heading); margin-bottom: 10px;">Organic Products</h3>
+                            <p style="color: #666;">We use only the finest, cruelty-free, and organic products for your skin and hair.</p>
+                        </div>
+                        <div class="feature-item">
+                            <h3 style="font-family: var(--font-heading); margin-bottom: 10px;">Serene Atmosphere</h3>
+                            <p style="color: #666;">Step into a world of calm. Our salon is designed to be your escape from the city.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonials">
+                <div class="container">
+                    <h2>Client Stories</h2>
+                    <div class="testimonials-grid">
+                        
+                        <div class="testimonial-card">
+                            <div class="stars">★★★★★</div>
+                            <p class="review-text">"I have never felt so pampered! The stylists really listened to what I wanted and the result was even better than I imagined. Highly recommend!"</p>
+                            <div class="customer-info">
+                                <div class="customer-avatar">SJ</div>
+                                <div class="customer-details">
+                                    <h4>Sarah Jenkins</h4>
+                                    <span>Hair Artistry</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="testimonial-card">
+                            <div class="stars">★★★★★</div>
+                            <p class="review-text">"The ambiance is just breathtaking. From the moment you walk in, the stress melts away. The deep tissue massage was exactly what I needed."</p>
+                            <div class="customer-info">
+                                <div class="customer-avatar">MT</div>
+                                <div class="customer-details">
+                                    <h4>Michael Thompson</h4>
+                                    <span>Massage Therapy</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="testimonial-card">
+                            <div class="stars">★★★★☆</div>
+                            <p class="review-text">"A truly luxurious experience. The facial left my skin glowing for days. A bit pricey, but absolutely worth it for the quality of products used."</p>
+                            <div class="customer-info">
+                                <div class="customer-avatar">ER</div>
+                                <div class="customer-details">
+                                    <h4>Emily Rodriguez</h4>
+                                    <span>Skincare</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="testimonial-card">
+                            <div class="stars">★★★★★</div>
+                            <p class="review-text">"Finally found a place that gets my nails right every time! The gel manicure lasted 3 weeks without a single chip. Love the color selection."</p>
+                            <div class="customer-info">
+                                <div class="customer-avatar">JL</div>
+                                <div class="customer-details">
+                                    <h4>Jessica Lee</h4>
+                                    <span>Nail Care</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="testimonial-card">
+                            <div class="stars">★★★★★</div>
+                            <p class="review-text">"I brought my mother here for her birthday and they treated her like a queen. The staff is incredibly warm and professional. We will be back!"</p>
+                            <div class="customer-info">
+                                <div class="customer-avatar">DK</div>
+                                <div class="customer-details">
+                                    <h4>David Kim</h4>
+                                    <span>Spa Package</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="testimonial-card">
+                            <div class="stars">★★★★★</div>
+                            <p class="review-text">"Elegant Glow is my happy place. Whether it's a quick trim or a full spa day, the consistency and attention to detail are unmatched in the city."</p>
+                            <div class="customer-info">
+                                <div class="customer-avatar">SM</div>
+                                <div class="customer-details">
+                                    <h4>Sophia Martinez</h4>
+                                    <span>Full Service</span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <section id="categories-page" class="page-section">
+            <div class="container">
+                <div class="categories-header">
+                    <h2>Our Services</h2>
+                    <p>Curated treatments for your well-being</p>
+                </div>
+                
+                <div class="categories-grid">
+                    
+                    <div class="category-card" onclick="showDetails('Haircut')">
+                        <div class="card-img-container">
+                            <img src="https://images.unsplash.com/photo-1562322140-8baeececf3df?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Hair Styling">
+                        </div>
+                        <div class="card-info">
+                            <h3>Hair Artistry</h3>
+                            <p>Cuts, Coloring & Styling</p>
+                        </div>
+                    </div>
+
+                    <div class="category-card" onclick="showDetails('Manicure')">
+                        <div class="card-img-container">
+                            <img src="https://images.unsplash.com/photo-1604654894610-df63bc536371?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Nails">
+                        </div>
+                        <div class="card-info">
+                            <h3>Nail Care</h3>
+                            <p>Manicures & Pedicures</p>
+                        </div>
+                    </div>
+
+                    <div class="category-card" onclick="showDetails('Facial')">
+                        <div class="card-img-container">
+                            <img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Facial">
+                        </div>
+                        <div class="card-info">
+                            <h3>Skincare</h3>
+                            <p>Facials & Treatments</p>
+                        </div>
+                    </div>
+
+                      <div class="category-card" onclick="showDetails('Massage')">
+                        <div class="card-img-container">
+                            <img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Massage">
+                        </div>
+                        <div class="card-info">
+                            <h3>Spa & Massage</h3>
+                            <p>Relaxation & Therapy</p>
+                        </div>
+                    </div>
+
+                    <div class="category-card" onclick="showDetails('Makeup')">
+                        <div class="card-img-container">
+                            <img src="https://images.unsplash.com/photo-1512496015851-a90fb38ba796?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Makeup">
+                        </div>
+                        <div class="card-info">
+                            <h3>Makeup Artistry</h3>
+                            <p>Bridal & Event Glam</p>
+                        </div>
+                    </div>
+
+                    <div class="category-card" onclick="showDetails('Keratin')">
+                        <div class="card-img-container">
+                            <img src="https://images.unsplash.com/photo-1560869713-7d0a29430803?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Keratin">
+                        </div>
+                        <div class="card-info">
+                            <h3>Keratin Treatment</h3>
+                            <p>Smoothing & Repair</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section id="details-page" class="page-section">
+            <div class="container">
+                <button class="btn btn-outline" onclick="showPage('categories-page')" style="margin-bottom: 1rem;">&larr; Back to Services</button>
+                
+                <div class="details-container">
+                    <div class="details-image">
+                        <img id="detail-img" src="" alt="Service Image">
+                    </div>
+                    <div class="details-content">
+                        <h2 id="detail-title">Service Title</h2>
+                        <span class="price-tag" id="detail-price">$0.00</span>
+                        
+                        <div class="detail-meta">
+                            <strong>Duration:</strong> <span id="detail-time">60 mins</span>
+                        </div>
+
+                        <p class="detail-description" id="detail-desc">
+                            Description goes here.
+                        </p>
+
+                        <button class="btn" onclick="alert('Thank you! Your appointment request has been noted.')">Book Appointment</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <svg class="footer-wave" viewBox="0 0 1440 320" preserveAspectRatio="none">
+            <path fill-opacity="1" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,112C672,96,768,96,864,112C960,128,1056,160,1152,160C1248,160,1344,128,1392,112L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+        </svg>
+
+        <div class="footer-content">
+            <div class="footer-col">
+                <h4>ELEGANT GLOW</h4>
+                <p>We are a premium salon dedicated to bringing out the best version of you. Experience luxury care in a serene environment.</p>
+                <div class="social-icons">
+                    <a href="#" class="social-icon">IG</a>
+                    <a href="#" class="social-icon">FB</a>
+                    <a href="#" class="social-icon">TW</a>
+                </div>
+            </div>
+
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <ul class="footer-links">
+                    <li><a href="#" onclick="showPage('home-page')">Home</a></li>
+                    <li><a href="#" onclick="showPage('categories-page')">Services</a></li>
+                    <li><a href="#" onclick="showPage('login-page')">Member Login</a></li>
+                    <li><a href="#" onclick="alert('Feature coming soon!')">Careers</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Contact Us</h4>
+                <ul class="footer-links">
+                    <li>📍 123 Beauty Lane, Fashion City</li>
+                    <li>📞 +1 (555) 123-4567</li>
+                    <li>✉️ hello@elegantglow.com</li>
+                    <li>🕒 Mon - Sat: 9:00 AM - 8:00 PM</li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Stay Updated</h4>
+                <p>Subscribe to our newsletter for the latest beauty tips and exclusive offers.</p>
+                <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Subscribed!');">
+                    <input type="email" placeholder="Your email address" required>
+                    <button type="submit">GO</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            &copy; 2025 Elegant Glow Salon. All rights reserved. Designed with ✨ care.
+        </div>
+    </footer>
+
+    <script>
+        // --- DATA FOR SERVICES (With Image URLs) ---
+        const serviceData = {
+            'Haircut': {
+                title: "Premium Hair Artistry",
+                price: "$85.00",
+                desc: "Transform your look with our master stylists. Whether you want a chic bob, long layers, or a complete color transformation, we use advanced techniques to ensure your hair looks healthy and vibrant. Includes a consultation, luxury wash, precision cut, and blow-dry finish.",
+                time: "60 - 90 Mins",
+                image: "https://images.unsplash.com/photo-1562322140-8baeececf3df?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+            },
+            'Manicure': {
+                title: "Signature Gel Manicure",
+                price: "$45.00",
+                desc: "Treat your hands to our signature experience. Includes nail shaping, cuticle care, hand exfoliation, a relaxing hand massage, and long-lasting gel polish application in your choice of over 100 designer shades.",
+                time: "45 Mins",
+                image: "https://images.unsplash.com/photo-1604654894610-df63bc536371?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+            },
+            'Facial': {
+                title: "Radiance Glow Facial",
+                price: "$120.00",
+                desc: "Restore your skin's natural luminosity. This treatment uses vitamin C infused serums and gentle micro-exfoliation to brighten dull skin, reduce dark spots, and leave you with a lasting, healthy glow.",
+                time: "60 Mins",
+                image: "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+            },
+            'Massage': {
+                title: "Aromatherapy Full Body",
+                price: "$150.00",
+                desc: "A holistic treatment using essential oils extracted from herbs, flowers, and fruits to naturally enhance your physical and emotional well-being. Perfect for relieving stress, anxiety, and muscle tension.",
+                time: "90 Mins",
+                image: "https://images.unsplash.com/photo-1544161515-4ab6ce6db874?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+            },
+            // --- NEW SERVICES ADDED ---
+            'Makeup': {
+                title: "Professional Makeup Artistry",
+                price: "$100.00",
+                desc: "Look your absolute best for any occasion. Our makeup artists specialize in natural, bridal, and high-glam looks using premium, long-lasting products that enhance your natural features. Includes skin prep and lash application.",
+                time: "60 Mins",
+                image: "https://images.unsplash.com/photo-1512496015851-a90fb38ba796?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+            },
+            'Keratin': {
+                title: "Keratin Smooth Treatment",
+                price: "$200.00",
+                desc: "Say goodbye to frizz and hello to silky, manageable hair. This professional keratin treatment smooths the hair cuticle, adds intense shine, and cuts drying time in half. Results last up to 3-4 months.",
+                time: "120 Mins",
+                image: "https://images.unsplash.com/photo-1560869713-7d0a29430803?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+            }
+        };
+
+        // --- NAVIGATION FUNCTIONS ---
+
+        function showPage(pageId) {
+            // Get all sections
+            const pages = document.querySelectorAll('.page-section');
+            
+            // Hide all
+            pages.forEach(page => {
+                page.classList.remove('active-page');
+            });
+
+            // Show target
+            document.getElementById(pageId).classList.add('active-page');
+            
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // --- AUTH FUNCTIONS ---
+
+        function toggleAuth(type) {
+            const loginPanel = document.getElementById('login-panel');
+            const signupPanel = document.getElementById('signup-panel');
+
+            if (type === 'signup') {
+                loginPanel.style.display = 'none';
+                signupPanel.style.display = 'block';
+            } else {
+                loginPanel.style.display = 'block';
+                signupPanel.style.display = 'none';
+            }
+        }
+
+        function handleLogin(event) {
+            event.preventDefault();
+            // Simple visual feedback
+            const btn = event.target.querySelector('button');
+            const originalText = btn.innerText;
+            btn.innerText = "Processing...";
+            
+            setTimeout(() => {
+                alert("Welcome back! Redirecting you to the home page.");
+                btn.innerText = originalText;
+                showPage('home-page');
+            }, 800);
+        }
+
+        // --- DETAILS FUNCTIONALITY ---
+
+        function showDetails(serviceKey) {
+            const data = serviceData[serviceKey];
+            
+            if (data) {
+                document.getElementById('detail-title').innerText = data.title;
+                document.getElementById('detail-price').innerText = data.price;
+                document.getElementById('detail-desc').innerText = data.desc;
+                document.getElementById('detail-time').innerText = data.time;
+                document.getElementById('detail-img').src = data.image; // Set the image source
+
+                showPage('details-page');
+            }
+        }
+    </script>
+</body>
+</html>
